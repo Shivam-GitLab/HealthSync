@@ -6,6 +6,7 @@ import com.healthsync.activity.user.entity.Activity;
 import com.healthsync.activity.user.mapper.ActivityMapper;
 import com.healthsync.activity.user.repository.ActivityRepository;
 import com.healthsync.activity.user.service.ActivityService;
+import com.healthsync.activity.validation.UserValidationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,14 @@ public class ActivityServiceImpl implements ActivityService {
 
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper;
+    private final UserValidationService userValidationService;
 
     @Override
     public ActivityResponse trackActivity(ActivityRequest request) {
+        Boolean isValidUser = userValidationService.validateUser(request.getUserId());
+        if (!isValidUser){
+            throw new RuntimeException("INVALID USER : "+request.getUserId());
+        }
         final Activity activity = activityMapper.toEntity(request);
         final Activity savedActivity = activityRepository.save(activity);
         return activityMapper.toResponse(savedActivity);
