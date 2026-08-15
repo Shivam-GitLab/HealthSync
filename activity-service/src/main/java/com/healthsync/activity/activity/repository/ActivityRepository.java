@@ -1,6 +1,6 @@
-package com.healthsync.activity.user.repository;
+package com.healthsync.activity.activity.repository;
 
-import com.healthsync.activity.user.entity.Activity;
+import com.healthsync.activity.activity.entity.Activity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;

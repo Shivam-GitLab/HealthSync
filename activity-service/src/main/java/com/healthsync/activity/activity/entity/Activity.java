@@ -1,4 +1,4 @@
-package com.healthsync.activity.user.entity;
+package com.healthsync.activity.activity.entity;
 
 import com.healthsync.activity.common.enums.ActivityType;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.healthsync.activity.user.service;
+package com.healthsync.activity.activity.service;
 
 import com.healthsync.activity.api.v1.request.ActivityRequest;
 import com.healthsync.activity.api.v1.response.ActivityResponse;

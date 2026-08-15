@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean existsByUserId(Long userId) {
-
+        log.info("CALLING USER-SERVICE FOR {} ", userId);
         return userRepository.existsById(userId);
     }
 }
