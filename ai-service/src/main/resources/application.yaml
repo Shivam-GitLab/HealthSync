@@ -28,6 +28,6 @@ eureka:
 gemini:
   api:
     url: ${GEMINI_API_URL:https://generativelanguage.googleapis.com/v1beta/interactions}
-    key: ${GEMINI_API_KEY:AIzaSyAiDhU6A35qhVgf8wYfHlbv_OOVJ8koVe8}
+    key: ${GEMINI_API_KEY:}
 server:
   port: ${SERVER_PORT:8083}
