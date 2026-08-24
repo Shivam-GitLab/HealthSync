@@ -10,7 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Document(collection = "recommendations")
+@Document(collection = "ai-recommendation")
 @Data
 @Builder
 public class Recommendation {
