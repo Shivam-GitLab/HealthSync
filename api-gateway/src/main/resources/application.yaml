@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: api-gateway
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+
+logging:
+  level:
+    org.springframework: INFO
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
+    com.healthsync.gateway: DEBUG
+
+  pattern:
+    console: "%cyan(%d{HH:mm:ss.SSS}) %green(%-5level) %magenta([%thread]) %blue(%logger{15}) - %msg%n"

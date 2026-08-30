@@ -1,35 +1,5 @@
 spring:
   application:
     name: ai-service
-  mongodb:
-    uri: mongodb://${MONGO_HOST:localhost}:${MONGO_PORT:27017}/healthsync_ai_recommendation
-  kafka:
-    bootstrap-servers: localhost:9092
-    consumer:
-      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      group-id: activity-processor-group
-      properties:
-        spring.json.trusted.packages: "com.healthsync.*"
-        spring.json.use.type.headers: false
-        spring.json.value.default.type: com.healthsync.ai.recommendation.entity.Activity
-
-kafka:
-  topic:
-    name: activity-events
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-  instance:
-    hostname: localhost
-    prefer-ip-address: true
-
-
-gemini:
-  api:
-    url: ${GEMINI_API_URL}
-    key: ${GEMINI_API_KEY}
-    model: ${GEMINI_MODEL}
-server:
-  port: ${SERVER_PORT:8083}
+  config:
+    import: optional:configserver:http://localhost:8888

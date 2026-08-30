@@ -23,7 +23,7 @@ public class GeminiAIServiceImpl implements GeminiAIService {
     @Value("${gemini.api.key}")
     private String geminiApiKey;
 
-    @Value("${gemini.api.model}")
+    @Value("${gemini.model}")
     private String geminiModel;
 
     public GeminiAIServiceImpl(WebClient.Builder webClientBuilder) {
