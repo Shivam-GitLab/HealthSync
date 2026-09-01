@@ -274,6 +274,3 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 
 ---
 
-**Last Updated**: 2026-08-31
-
-For the latest updates, visit: [HealthSync Repository](https://github.com/Shivam-GitLab/HealthSync)
