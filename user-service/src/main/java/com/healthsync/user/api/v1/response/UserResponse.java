@@ -9,7 +9,17 @@ import java.time.LocalDateTime;
 
 @Getter
 @Builder
+@JsonPropertyOrder({
+        "id",
+        "email",
+        "firstName",
+        "lastName",
+        "role",
+        "createdAt",
+        "updatedAt"
+})
 public class UserResponse {
+
     private Long id;
     private String email;
     private String firstName;

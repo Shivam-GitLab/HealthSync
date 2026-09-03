@@ -13,7 +13,7 @@
       </jdbc-additional-properties>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Mongo DB" uuid="ea7d05f0-4783-462c-9286-1551fb9c0a22">
+    <data-source source="LOCAL" name="MongoDB" uuid="cfeacb28-ba31-4c0f-b278-adb3bd6c022b">
       <driver-ref>mongo.4</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.dbschema.MongoJdbcDriver</jdbc-driver>
