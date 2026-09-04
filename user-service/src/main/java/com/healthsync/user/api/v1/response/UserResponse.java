@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 })
 public class UserResponse {
 
-    private Long id;
+    private String id;
     private String email;
     private String firstName;
     private String lastName;

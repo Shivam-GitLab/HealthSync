@@ -20,7 +20,7 @@ public class ActivityServiceImpl implements ActivityService {
     private final ActivityRepository activityRepository;
     private final ActivityMapper activityMapper;
     private final UserValidationService userValidationService;
-    private final KafkaTemplate<Long, Activity> kafkaTemplate;
+    private final KafkaTemplate<String, Activity> kafkaTemplate;
     private final KafkaTopicProperties kafkaTopicPropertiesTopic;
 
 

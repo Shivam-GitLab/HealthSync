@@ -11,7 +11,7 @@ import java.util.Map;
 @Builder
 public class ActivityResponse {
     private String id;
-    private Long userId;
+    private String userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;

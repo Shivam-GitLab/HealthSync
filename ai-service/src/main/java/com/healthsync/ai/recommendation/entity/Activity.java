@@ -18,7 +18,7 @@ import java.util.Map;
 @NoArgsConstructor
 public class Activity {
     private String id;
-    private Long userId;
+    private String  userId;
     private ActivityType type;
     private Integer duration;
     private Integer caloriesBurned;

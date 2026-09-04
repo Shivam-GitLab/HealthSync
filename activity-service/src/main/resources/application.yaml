@@ -2,4 +2,21 @@ spring:
   application:
     name: activity-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: "optional:configserver:http://localhost:8888"
+  mongodb:
+    uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/activities?retryWrites=true&w=majority&appName=Cluster0
+    database: activities
+  data:
+    mongodb:
+      uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/activities?retryWrites=true&w=majority&appName=Cluster0
+      database: activities
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    mongo:
+      enabled: false
+    mongodb:
+      enabled: false

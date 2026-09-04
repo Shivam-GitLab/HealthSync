@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getUserProfile(Long userId) {
+    public UserResponse getUserProfile(String userId) {
 
         final User user = userRepository.findById(userId)
                 .orElseThrow(() ->
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean existsByUserId(Long userId) {
+    public boolean existsByUserId(String userId) {
         log.info("CALLING USER-SERVICE FOR {} ", userId);
         return userRepository.existsById(userId);
     }

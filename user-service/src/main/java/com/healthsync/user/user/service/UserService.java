@@ -7,7 +7,7 @@ public interface UserService {
 
     UserResponse register(RegisterRequest request);
 
-    UserResponse getUserProfile(Long userId);
+    UserResponse getUserProfile(String userId);
 
-    boolean existsByUserId(Long userId);
+    boolean existsByUserId(String userId);
 }

@@ -2,4 +2,21 @@ spring:
   application:
     name: ai-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: "optional:configserver:http://localhost:8888"
+  mongodb:
+    uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/ai-recommendation?retryWrites=true&w=majority&appName=Cluster0
+    database: ai-recommendation
+  data:
+    mongodb:
+      uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/ai-recommendation?retryWrites=true&w=majority&appName=Cluster0
+      database: ai-recommendation
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  health:
+    mongo:
+      enabled: false
+    mongodb:
+      enabled: false

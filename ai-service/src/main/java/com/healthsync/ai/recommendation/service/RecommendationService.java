@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public interface RecommendationService {
-    List<Recommendation> getUserRecommendation(Long userId);
+    List<Recommendation> getUserRecommendation(String userId);
 
     Recommendation getActivityRecommendation(String activityId);
 }

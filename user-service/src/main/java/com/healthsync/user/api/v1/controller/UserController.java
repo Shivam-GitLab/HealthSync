@@ -17,7 +17,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity<UserResponse> getUserProfile(
-            @PathVariable Long userId) {
+            @PathVariable String userId) {
 
         return ResponseEntity.ok(userService.getUserProfile(userId));
     }
@@ -31,7 +31,7 @@ public class UserController {
 
     @GetMapping("/{userId}/validate")
     public ResponseEntity<Boolean> validateUser(
-            @PathVariable Long userId) {
+            @PathVariable String userId) {
         return ResponseEntity.ok(userService.existsByUserId(userId));
     }
 

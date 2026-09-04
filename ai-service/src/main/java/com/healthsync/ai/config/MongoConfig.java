@@ -1,10 +1,40 @@
 package com.healthsync.ai.config;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.mongodb.config.EnableMongoAuditing;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 
 @Configuration
-@EnableMongoAuditing
 public class MongoConfig {
-}
 
+    @Value("${spring.data.mongodb.uri}")
+    private String connectionString;
+
+    @Value("${spring.data.mongodb.database:ai-recommendation}")
+    private String databaseName;
+
+    @Bean
+    @Primary
+    public MongoClient mongoClient() {
+        return MongoClients.create(connectionString);
+    }
+
+    @Bean
+    @Primary
+    public MongoDatabaseFactory mongoDatabaseFactory(MongoClient mongoClient) {
+        return new SimpleMongoClientDatabaseFactory(mongoClient, databaseName);
+    }
+
+    @Bean
+    @Primary
+    public MongoTemplate mongoTemplate(MongoDatabaseFactory mongoDatabaseFactory) {
+        return new MongoTemplate(mongoDatabaseFactory);
+    }
+}
