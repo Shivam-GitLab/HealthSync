@@ -14,27 +14,27 @@ import com.mongodb.client.MongoClients;
 @Configuration
 public class MongoConfig {
 
-    @Value("${spring.data.mongodb.uri}")
-    private String connectionString;
-
-    @Value("${spring.data.mongodb.database:ai-recommendation}")
-    private String databaseName;
-
-    @Bean
-    @Primary
-    public MongoClient mongoClient() {
-        return MongoClients.create(connectionString);
-    }
-
-    @Bean
-    @Primary
-    public MongoDatabaseFactory mongoDatabaseFactory(MongoClient mongoClient) {
-        return new SimpleMongoClientDatabaseFactory(mongoClient, databaseName);
-    }
-
-    @Bean
-    @Primary
-    public MongoTemplate mongoTemplate(MongoDatabaseFactory mongoDatabaseFactory) {
-        return new MongoTemplate(mongoDatabaseFactory);
-    }
+//    @Value("${spring.data.mongodb.uri}")
+//    private String connectionString;
+//
+//    @Value("${spring.data.mongodb.database:ai-recommendation}")
+//    private String databaseName;
+//
+//    @Bean
+//    @Primary
+//    public MongoClient mongoClient() {
+//        return MongoClients.create(connectionString);
+//    }
+//
+//    @Bean
+//    @Primary
+//    public MongoDatabaseFactory mongoDatabaseFactory(MongoClient mongoClient) {
+//        return new SimpleMongoClientDatabaseFactory(mongoClient, databaseName);
+//    }
+//
+//    @Bean
+//    @Primary
+//    public MongoTemplate mongoTemplate(MongoDatabaseFactory mongoDatabaseFactory) {
+//        return new MongoTemplate(mongoDatabaseFactory);
+//    }
 }

@@ -4,10 +4,7 @@ spring:
   mongodb:
     uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/ai-recommendation?retryWrites=true&w=majority&appName=Cluster0
     database: ai-recommendation
-  data:
-    mongodb:
-      uri: mongodb+srv://Shivam-Jha:ShivamJha91@cluster0.1ycpj3r.mongodb.net/ai-recommendation?retryWrites=true&w=majority&appName=Cluster0
-      database: ai-recommendation
+
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
@@ -25,7 +22,7 @@ kafka:
 
 management:
   health:
-    mongo:
+    mongodb:
       enabled: false
 
 eureka:

@@ -11,6 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest {
+    private String keycloakId;
 
     @NotBlank(message = "Email is required")
     @Email(message = "Invalid email format")

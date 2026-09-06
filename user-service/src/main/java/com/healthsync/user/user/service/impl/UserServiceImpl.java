@@ -29,6 +29,17 @@ public class UserServiceImpl implements UserService {
         final String email = request.getEmail().trim().toLowerCase();
 
         if (userRepository.existsByEmail(email)) {
+            User existingUser = userRepository.findByEmail(request.getEmail());
+            UserResponse.builder()
+                    .id(existingUser.getId())
+                    .keycloakId(existingUser.getKeycloakId())
+                    .email(existingUser.getEmail())
+                    .firstName(existingUser.getFirstName())
+                    .lastName(existingUser.getLastName())
+                    .role(existingUser.getRole())
+                    .createdAt(existingUser.getCreatedAt())
+                    .updatedAt(existingUser.getUpdatedAt())
+                    .build();
             throw new EmailAlreadyExistsException(
                     "User already exists with email: " + email
             );
@@ -59,6 +70,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean existsByUserId(String userId) {
         log.info("CALLING USER-SERVICE FOR {} ", userId);
-        return userRepository.existsById(userId);
+//        return userRepository.existsById(userId);
+        return userRepository.existsByKeycloakId(userId);
     }
 }
