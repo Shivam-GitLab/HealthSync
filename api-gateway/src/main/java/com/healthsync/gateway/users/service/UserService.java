@@ -1,4 +1,7 @@
 package com.healthsync.gateway.users.service;
+
+import com.healthsync.gateway.api.request.RegisterRequest;
+import com.healthsync.gateway.api.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,37 +14,60 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class UserService {
+
     private final WebClient userServiceWebClient;
 
     public Mono<Boolean> validateUser(String userId) {
+
         log.info("Calling User Service for {}", userId);
+
         return userServiceWebClient.get()
-                .uri("/api/users/{userId}/validate", userId)
+                .uri("/api/v1/users/{userId}", userId)
                 .retrieve()
-                .bodyToMono(Boolean.class)
-                .onErrorResume(WebClientResponseException.class, e -> {
-                    if (e.getStatusCode() == HttpStatus.NOT_FOUND)
-                        return Mono.error(new RuntimeException("User not found : " + userId));
-
-                    else if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
-                        return Mono.error(new RuntimeException("Invalid : " + userId));
-
-                    return Mono.error(new RuntimeException("Unexpected error : " + userId));
-                });
+                .bodyToMono(UserResponse.class)
+                .map(user -> true)
+                .onErrorResume(
+                        WebClientResponseException.NotFound.class,
+                        ex -> {
+                            log.info("User not found: {}", userId);
+                            return Mono.just(false);
+                        }
+                );
     }
 
-    public Mono<UserResponse> registerUser(RegisterRequest registerRequest) {
-        log.info("Calling User Registration for {}", registerRequest.getEmail());
+    public Mono<UserResponse> registerUser(
+            RegisterRequest registerRequest
+    ) {
+
+        log.info(
+                "Calling User Registration for {}",
+                registerRequest.getEmail()
+        );
+
         return userServiceWebClient.post()
-                .uri("/api/users/register")
+                .uri("/api/v1/users/register")
                 .bodyValue(registerRequest)
                 .retrieve()
                 .bodyToMono(UserResponse.class)
-                .onErrorResume(WebClientResponseException.class, e -> {
-                    if (e.getStatusCode() == HttpStatus.BAD_REQUEST)
-                        return Mono.error(new RuntimeException("Bad request : " + e.getMessage()));
+                .onErrorResume(
+                        WebClientResponseException.class,
+                        ex -> {
 
-                    return Mono.error(new RuntimeException("Unexpected error : " + e.getMessage()));
-                });
+                            if (ex.getStatusCode() == HttpStatus.BAD_REQUEST) {
+                                return Mono.error(
+                                        new RuntimeException(
+                                                "Bad request : " + ex.getMessage()
+                                        )
+                                );
+                            }
+
+                            return Mono.error(
+                                    new RuntimeException(
+                                            "Unexpected error : " + ex.getMessage()
+                                    )
+                            );
+                        }
+                );
     }
 }
+

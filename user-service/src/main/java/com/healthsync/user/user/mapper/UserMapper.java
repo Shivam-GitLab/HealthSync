@@ -11,6 +11,7 @@ public class UserMapper {
     public User toEntity(RegisterRequest request, String email) {
         return User.builder()
                 .email(request.getEmail())
+                .keycloakId(request.getKeycloakId())
                 .password(request.getPassword())
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
@@ -20,6 +21,7 @@ public class UserMapper {
     public UserResponse toResponse(User user) {
         return UserResponse.builder()
                 .id(user.getId())
+                .keycloakId(user.getKeycloakId())
                 .email(user.getEmail())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())

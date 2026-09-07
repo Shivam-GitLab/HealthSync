@@ -28,22 +28,19 @@ public class KeycloakUserSyncFilter implements WebFilter {
     public Mono<Void> filter(ServerWebExchange exchange, @NonNull WebFilterChain chain) {
         String userId = exchange.getRequest().getHeaders().getFirst("X-User-ID");
         String token = exchange.getRequest().getHeaders().getFirst("Authorization");
+        assert token != null;
         RegisterRequest registerRequest = getUserDetails(token);
         if (userId == null) {
             userId = registerRequest.getKeycloakId();
         }
 
-        if (userId != null && token != null) {
+        if (userId != null) {
             String finalUserId = userId;
             return userService.validateUser(userId)
                     .flatMap(exist -> {
                         if (!exist) {
-                            if (registerRequest != null) {
-                                return userService.registerUser(registerRequest)
-                                        .then(Mono.empty());
-                            } else {
-                                return Mono.empty();
-                            }
+                            return userService.registerUser(registerRequest)
+                                    .then(Mono.empty());
                         } else {
                             log.info("User already exist, Skipping sync");
                             return Mono.empty();
@@ -66,14 +63,13 @@ public class KeycloakUserSyncFilter implements WebFilter {
             SignedJWT signedJWT = SignedJWT.parse(tokenWithoutBearer);
             JWTClaimsSet claims = signedJWT.getJWTClaimsSet();
 
-            RegisterRequest request = new RegisterRequest();
-            request.setEmail(claims.getStringClaim("email"));
-            request.setKeycloakId(claims.getStringClaim("sub"));
-            request.setFirstName(claims.getStringClaim("given_name"));
-            request.setLastName(claims.getStringClaim("family_name"));
-            request.setPassword("dummy@123123");
-
-            return request;
+            return RegisterRequest.builder()
+                    .email(claims.getStringClaim("email"))
+                    .keycloakId(claims.getStringClaim("sub"))
+                    .firstName(claims.getStringClaim("given_name"))
+                    .lastName(claims.getStringClaim("family_name"))
+                    .password("dummy@123123")
+                    .build();
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
