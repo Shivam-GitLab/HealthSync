@@ -26,9 +26,6 @@ HealthSync is built on a cloud-native microservices architecture with the follow
       └────────────────┘
 ```
 
-<img width="1129" height="634" alt="image" src="https://github.com/user-attachments/assets/36c67a02-8a49-427f-bdd7-9cb4d0be1b3a" />
-
-
 ## 🚀 Services
 
 ### 1. **API Gateway** (`api-gateway`)
