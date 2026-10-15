@@ -1,3 +1,4 @@
+
 # HealthSync
 
 A modern microservices-based health and wellness management platform built with Spring Boot and Spring Cloud. HealthSync provides a comprehensive ecosystem for managing user health data, tracking activities, and leveraging AI-powered insights.
