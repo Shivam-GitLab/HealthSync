@@ -15,5 +15,6 @@ logging:
       org.springframework: INFO
       com.warenova.wms: DEBUG
 
+
     pattern:
       console: "%cyan(%d{HH:mm:ss.SSS}) %green(%-5level) %magenta([%thread]) %blue(%logger{15}) - %msg%n"
